@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Forms</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'marksheet/css/bootstrap.css' %}">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            margin: 30px;
+            font-size: 10px;
+            width: 90%;
+        }
+
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 200px;
+            width: 80%;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+            margin-right: 1px;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .text-info {
+            color: #17a2b8;
+            font-size: 2.2em;
+            margin: 30px;
+            margin-left: 36%;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-success {
+            background-color: #aaff00;
+            border-color: #aaff00;
+            border-radius: 12px;
+            padding: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #aaff00;
+        }
+
+        /* Improved table styling */
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid black;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        /* Side-by-side layout */
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-container {
+            width: 100%;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .modal-footer {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container info-container">
+        <h4 class="text-info mb-3">Show Student Information</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items:center;">
+                                <div>Name</div>
+                                <a href="?page=1&sort=name" style="margin-left:8px; "> <i class="fas fa-sort-alpha-down"> </i> </a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Roll No</div>
+                                <a href="?page=1&sort=roll_no" style="margin-left:8px; "><i class="fas fa-sort-numeric-down"></i> </a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="font-size:1rem;">Subject 1</div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Score 1</div>
+                                <a href="?page=1&sort=subject1" style="margin-left:8px; "><i class="fas fa-sort-amount-down"></i></a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="font-size:1rem;">Subject 2</div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Score 2</div>
+                                <a href="?page=1&sort=subject2" style="margin-left:8px; "><i class="fas fa-sort-amount-down"></i></a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="font-size:1rem;">Subject 3</div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Score 3</div>
+                                <a href="?page=1&sort=subject3" style="margin-left:8px; "><i class="fas fa-sort-amount-down"></i></a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="font-size:1rem;">Subject 4</div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Score 4</div>
+                                <a href="?page=1&sort=subject4" style="margin-left:8px; "><i class="fas fa-sort-amount-down"></i></a>
+                            </div>
+                        </th>
+                        <th>
+                            <div style="font-size:1rem;">Subject 5</div>
+                        </th>
+                        <th>
+                            <div style="display:flex; font-size:1rem; align-items: center;">
+                                <div>Score 5</div>
+                                <a href="?page=1&sort=subject" style="margin-left:8px; "><i class="fas fa-sort-amount-down"></i></a>
+                            </div>
+                        </th>
+                        <th>Image</th>
+                        <th>Class Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for st in stu %}
+                    <tr>
+                        <td>{{ st.name }}</td>
+                        <td>{{ st.roll_no }}</td>
+                        <td>{{ st.subject1 }}</td>
+                        <td>{{ st.score1 }}</td>
+                        <td>{{ st.subject2 }}</td>
+                        <td>{{ st.score2 }}</td>
+                        <td>{{ st.subject3 }}</td>
+                        <td>{{ st.score3 }}</td>
+                        <td>{{ st.subject4 }}</td>
+                        <td>{{ st.score4 }}</td>
+                        <td>{{ st.subject5 }}</td>
+                        <td>{{ st.score5 }}</td>
+                        <td>{{ st.image }}</td>
+                        <td>{{ st.class_level }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if stu.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ stu.previous_page_number }}">previous</a>
+                        {% endif %}
+            
+                        <span class="current">
+                            Page {{ stu.number }} of {{ stu.paginator.num_pages }}.
+                        </span>
+            
+                        {% if stu.has_next %}
+                            <a href="?page={{ stu.next_page_number }}">next</a>
+                            <a href="?page={{ stu.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+    </div>
+
+</body>
+</html>

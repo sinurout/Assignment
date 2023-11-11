@@ -1,0 +1,32 @@
+<td>
+    <input type="button" data-side="{{ st.roll_no }}" class="btn btn-warning btn-sm sort-btn" value="Sort">
+</td>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var sortBtn = document.querySelector('.sort-btn');
+
+        sortBtn.addEventListener('click', function () {
+            var sideId = sortBtn.getAttribute('data-side');
+
+            fetch('/yourapp/sort/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    side_id: sideId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the sorted data here
+                console.log('Sorted Data:', data.sorted_data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Forms</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'marksheet/css/bootstrap.css' %}">
+
+    <!-- Custom Styles -->
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+    
+        .main_container{
+            {% comment %} border: 1px solid black; {% endcomment %}
+            background: whitesmoke;
+        }
+        .inner_container{
+            {% comment %} border: 1px solid gray; {% endcomment %}
+            width: 70%;
+            padding: 50px auto 50px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50%;
+        }
+
+        form {
+            padding: 30px;
+            height: 400px;
+            overflow-y: scroll;
+            background-color: #87CEEB;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px; 
+            margin: auto;
+        }
+
+        h2 {
+            color: #dc3545;
+            font-family: 'Times New Roman', sans-serif;
+            font-size: 24px;
+            text-transform: uppercase; 
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background-color: #f8f9fa;
+            padding: 5px;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        h4 {
+            color: #007bff;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            text-align: center;
+            background-color:
+            padding: 3px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        form button {
+            background-color: #4CAF50;
+            color: #fff; 
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+        form input,
+        form textarea,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="main_container">
+        <div class="inner_container">
+            <h2 class="text-danger">Student Form</h2>
+            <h4 class="text-info mb-3">Add Students Marksheet</h4>
+            <form id="student-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
